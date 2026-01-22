@@ -1,0 +1,19 @@
+﻿<Project>
+  <PropertyGroup>
+    <!-- アプリケーション情報 -->
+    <AppName>KoScreenPresenterAssist</AppName>
+    <AppVersion>1.0.0</AppVersion>
+    <AppDescription>プレゼンテーションや画面共有時に便利な描画・強調表示ツール</AppDescription>
+    <AppCopyright>© 2026 tikomo software</AppCopyright>
+    <AppAuthor>tikomo software</AppAuthor>
+    
+    <!-- アセンブリ情報 -->
+    <AssemblyVersion>$(AppVersion)</AssemblyVersion>
+    <FileVersion>$(AppVersion)</FileVersion>
+    <Version>$(AppVersion)</Version>
+    <Copyright>$(AppCopyright)</Copyright>
+    <Product>$(AppName)</Product>
+    <Company>$(AppAuthor)</Company>
+  </PropertyGroup>
+</Project>
+

@@ -1,0 +1,28 @@
+<Window x:Class="ScreenPresenterAssist.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OverlayWindow"
+        WindowStyle="None"
+        AllowsTransparency="true"
+        Background="Transparent"
+        Topmost="true"
+        ShowInTaskbar="false"
+        WindowState="Maximized">
+    <Grid Background="Transparent" x:Name="RootGrid">
+        <!-- 描画レイヤー -->
+        <InkCanvas x:Name="DrawingCanvas" Background="#01000000" Visibility="Collapsed">
+            <InkCanvas.DefaultDrawingAttributes>
+                <DrawingAttributes Color="Red" Width="10" Height="10"/>
+            </InkCanvas.DefaultDrawingAttributes>
+        </InkCanvas>
+        
+        <!-- シェイプ描画レイヤー（円など） -->
+        <Canvas x:Name="ShapeCanvas" Background="Transparent" IsHitTestVisible="False"/>
+        
+        <!-- カーソル強調表示レイヤー -->
+        <Canvas x:Name="CursorCanvas" IsHitTestVisible="False" />
+        
+        <!-- 拡大鏡レイヤー -->
+        <Canvas x:Name="MagnifierCanvas" IsHitTestVisible="False" />
+    </Grid>
+</Window>

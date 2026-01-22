@@ -1,0 +1,9 @@
+﻿# アプリケーション情報設定ファイル
+# このファイルを編集することで、アプリ名やバージョン情報を一括変更できます
+
+APP_NAME=KoScreenPresenterAssist
+APP_VERSION=1.0.0
+APP_DESCRIPTION=プレゼンテーションや画面共有時に便利な描画・強調表示ツール
+APP_COPYRIGHT=© 2026 tikomo software
+APP_AUTHOR=tikomo software
+
