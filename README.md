@@ -121,9 +121,10 @@ KoScreenPresenterAssistは、プレゼンテーションや画面共有中に画
 
 このソフトウェアは個人利用・商用利用ともに無料でご利用いただけます。
 
-## お問い合わせ
+## 📞 サポート
 
-不具合や要望がありましたら、GitHubのIssuesまでお願いします。
+- **E-Mail**: tikomo@gmail.com
+- **HP**: https://tikomosoftware.github.io
 
 ---
 
