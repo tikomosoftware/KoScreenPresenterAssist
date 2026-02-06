@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TooltipDraw" xml:space="preserve"><value>Draw Mode (Ctrl+Alt+P)</value></data>
+  <data name="TooltipHighlight" xml:space="preserve"><value>Highlight Mode (Ctrl+Alt+H)</value></data>
+  <data name="TooltipMagnify" xml:space="preserve"><value>Magnifier (Ctrl+Alt+Z)</value></data>
+  <data name="TooltipClear" xml:space="preserve"><value>Clear All (Ctrl+Alt+X)</value></data>
+  <data name="TooltipOff" xml:space="preserve"><value>Turn Off (Esc)</value></data>
+  <data name="TooltipRed" xml:space="preserve"><value>Red (1)</value></data>
+  <data name="TooltipBlue" xml:space="preserve"><value>Blue (2)</value></data>
+  <data name="TooltipYellow" xml:space="preserve"><value>Yellow (3)</value></data>
+  <data name="TooltipGreen" xml:space="preserve"><value>Green (4)</value></data>
+  <data name="MenuShowToolbar" xml:space="preserve"><value>Show Toolbar</value></data>
+  <data name="MenuHideToolbar" xml:space="preserve"><value>Hide Toolbar</value></data>
+  <data name="MenuHelp" xml:space="preserve"><value>Help</value></data>
+  <data name="MenuSettings" xml:space="preserve"><value>Settings</value></data>
+  <data name="MenuMagnifierDesign" xml:space="preserve"><value>Magnifier Design</value></data>
+  <data name="DesignLens" xml:space="preserve"><value>Lens</value></data>
+  <data name="DesignBlackBorder" xml:space="preserve"><value>Border (Black)</value></data>
+  <data name="DesignWhiteBorder" xml:space="preserve"><value>Border (White)</value></data>
+  <data name="MenuExit" xml:space="preserve"><value>Exit</value></data>
+  <data name="HelpTitle" xml:space="preserve"><value>Help</value></data>
+  <data name="HelpContent" xml:space="preserve"><value>【Screen Presenter Assist Usage】
+
+■ Hotkeys
+  Ctrl + Alt + P : Toggle Draw Mode
+  Ctrl + Alt + H : Toggle Highlight Mode
+  Ctrl + Alt + Z : Toggle Magnifier
+  Ctrl + Alt + X : Clear All Drawings
+  Esc : Cancel all modes
+
+■ During Draw Mode
+  1-4 Keys : Change color (1:Red 2:Blue 3:Yellow 4:Green)
+  Ctrl + Drag : Draw Circle
+  Shift + Drag : Draw Line
+  Normal Drag : Freehand Draw
+
+■ Toolbar
+  ✏️ : Draw Mode
+  🔦 : Highlight Mode
+  🔍 : Magnifier
+  🗑️ : Clear All
+  ⏹️ : Off</value></data>
+</root>

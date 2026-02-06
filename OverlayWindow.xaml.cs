@@ -23,11 +23,20 @@ namespace ScreenPresenterAssist
         private MagnifierLayer _magnifierLayer;
         private TrayIconController? _trayIconController;
         private Action? _toolbarShowAction;
+        private AppSettings _settings = new AppSettings();
         
+        public event Action<Color>? DrawingColorChanged;
+        public event Action<Color>? HighlightColorChanged;
+
         // 円描画用
         private bool _isDrawingCircle = false;
         private Point _circleStartPoint;
         private Ellipse? _previewEllipse;
+        
+        // 直線描画用
+        private bool _isDrawingLine = false;
+        private Point _lineStartPoint;
+        private Line? _previewLine;
 
         [DllImport("user32.dll")]
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
@@ -71,19 +80,19 @@ namespace ScreenPresenterAssist
                     {
                         case System.Windows.Input.Key.D1:
                         case System.Windows.Input.Key.NumPad1:
-                            DrawingCanvas.DefaultDrawingAttributes.Color = System.Windows.Media.Colors.Red;
+                            SetDrawingColor((Color)ColorConverter.ConvertFromString("#FF6B6B"));
                             break;
                         case System.Windows.Input.Key.D2:
                         case System.Windows.Input.Key.NumPad2:
-                            DrawingCanvas.DefaultDrawingAttributes.Color = System.Windows.Media.Colors.Blue;
+                            SetDrawingColor((Color)ColorConverter.ConvertFromString("#74B9FF"));
                             break;
                         case System.Windows.Input.Key.D3:
                         case System.Windows.Input.Key.NumPad3:
-                            DrawingCanvas.DefaultDrawingAttributes.Color = System.Windows.Media.Colors.Yellow;
+                            SetDrawingColor((Color)ColorConverter.ConvertFromString("#FDCB6E"));
                             break;
                         case System.Windows.Input.Key.D4:
                         case System.Windows.Input.Key.NumPad4:
-                            DrawingCanvas.DefaultDrawingAttributes.Color = System.Windows.Media.Colors.Green;
+                            SetDrawingColor((Color)ColorConverter.ConvertFromString("#55EFC4"));
                             break;
                     }
                 }
@@ -92,7 +101,9 @@ namespace ScreenPresenterAssist
         
         private void OnDrawingMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Keyboard.Modifiers == ModifierKeys.Control && _modeManager?.CurrentMode == AppMode.Drawing)
+            if (_modeManager?.CurrentMode != AppMode.Drawing) return;
+
+            if (Keyboard.Modifiers == ModifierKeys.Control)
             {
                 _isDrawingCircle = true;
                 _circleStartPoint = e.GetPosition(ShapeCanvas);
@@ -110,6 +121,25 @@ namespace ScreenPresenterAssist
                 
                 e.Handled = true;
             }
+            else if (Keyboard.Modifiers == ModifierKeys.Shift)
+            {
+                _isDrawingLine = true;
+                _lineStartPoint = e.GetPosition(ShapeCanvas);
+
+                // プレビュー用の直線を作成
+                _previewLine = new Line
+                {
+                    Stroke = new SolidColorBrush(DrawingCanvas.DefaultDrawingAttributes.Color),
+                    StrokeThickness = DrawingCanvas.DefaultDrawingAttributes.Width,
+                    X1 = _lineStartPoint.X,
+                    Y1 = _lineStartPoint.Y,
+                    X2 = _lineStartPoint.X,
+                    Y2 = _lineStartPoint.Y
+                };
+                ShapeCanvas.Children.Add(_previewLine);
+
+                e.Handled = true;
+            }
         }
         
         private void OnDrawingMouseMove(object sender, MouseEventArgs e)
@@ -125,6 +155,14 @@ namespace ScreenPresenterAssist
                 _previewEllipse.Height = radius * 2;
                 Canvas.SetLeft(_previewEllipse, _circleStartPoint.X - radius);
                 Canvas.SetTop(_previewEllipse, _circleStartPoint.Y - radius);
+                e.Handled = true;
+            }
+            else if (_isDrawingLine && _previewLine != null)
+            {
+                var currentPoint = e.GetPosition(ShapeCanvas);
+                _previewLine.X2 = currentPoint.X;
+                _previewLine.Y2 = currentPoint.Y;
+                e.Handled = true;
             }
         }
         
@@ -132,9 +170,15 @@ namespace ScreenPresenterAssist
         {
             if (_isDrawingCircle && _previewEllipse != null)
             {
-                // プレビューを確定（そのまま残す）
                 _previewEllipse = null;
                 _isDrawingCircle = false;
+                e.Handled = true;
+            }
+            else if (_isDrawingLine && _previewLine != null)
+            {
+                _previewLine = null;
+                _isDrawingLine = false;
+                e.Handled = true;
             }
         }
 
@@ -153,11 +197,15 @@ namespace ScreenPresenterAssist
             // ホットキーの初期化と登録
             _hotKeyManager.Initialize(this);
             _mouseHook.Install();
-            _trayIconController = new TrayIconController(this, () => _toolbarShowAction?.Invoke());
             
-            // ESCキーで全モード解除（グローバルホットキー）
-            _hotKeyManager.Register(0, 0x1B, // ESC
-                () => _modeManager?.SetMode(AppMode.Normal));
+            _settings = AppSettings.Load();
+            _magnifierLayer.SetDesign(_settings.MagnifierDesign);
+
+            _trayIconController = new TrayIconController(this, () => _toolbarShowAction?.Invoke());
+            _trayIconController.InitialCheckDesign(_settings.MagnifierDesign);
+            
+            // ESCキーで全モード解除（グローバルホットキー）はSetEscHotkeyEnabledで管理
+            SetEscHotkeyEnabled(false);
             
             // 描画モード切替: Ctrl + Alt + P
             _hotKeyManager.Register(HotKeyManager.MOD_CONTROL | HotKeyManager.MOD_ALT, 0x50, // 'P'
@@ -194,9 +242,23 @@ namespace ScreenPresenterAssist
             _magnifierLayer.SetActive(active);
         }
 
+        public void SetMagnifierDesign(MagnifierDesign design)
+        {
+            _settings.MagnifierDesign = design;
+            _magnifierLayer.SetDesign(design);
+            _settings.Save();
+        }
+
         public void SetDrawingColor(System.Windows.Media.Color color)
         {
             DrawingCanvas.DefaultDrawingAttributes.Color = color;
+            DrawingColorChanged?.Invoke(color);
+        }
+
+        public void SetHighlightColor(System.Windows.Media.Color color)
+        {
+            _cursorVisualizer.SetHighlightColor(color);
+            HighlightColorChanged?.Invoke(color);
         }
 
         public ModeManager? GetModeManager()
@@ -212,6 +274,20 @@ namespace ScreenPresenterAssist
         public void UpdateToolbarVisibility(bool visible)
         {
             _trayIconController?.SetToolbarVisible(visible);
+        }
+
+        public void SetEscHotkeyEnabled(bool enabled)
+        {
+            if (enabled)
+            {
+                // ESCキーで全モード解除（グローバルホットキー）
+                _hotKeyManager.Register(0, 0x1B, // ESC
+                    () => _modeManager?.SetMode(AppMode.Normal));
+            }
+            else
+            {
+                _hotKeyManager.Unregister(0, 0x1B);
+            }
         }
 
         /// <summary>

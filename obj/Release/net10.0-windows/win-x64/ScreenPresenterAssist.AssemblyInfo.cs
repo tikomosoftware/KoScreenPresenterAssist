@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("© 2026 tikomo software")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4820d2011ffa197324e82351ec75e4b8641103df")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d619b969da771cc3bf7905753ac21c172829e2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("KoScreenPresenterAssist")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KoScreenPresenterAssist")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0")]

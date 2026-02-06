@@ -75,8 +75,9 @@
         <!-- カラーボタンスタイル -->
         <Style x:Key="ColorButton" TargetType="Button">
             <Setter Property="Width" Value="20"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Margin" Value="2,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -84,14 +85,16 @@
                                 Background="{TemplateBinding Background}" 
                                 CornerRadius="10"
                                 BorderThickness="1"
-                                BorderBrush="White">
+                                BorderBrush="Transparent">
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="White"/>
                                 <Setter TargetName="border" Property="BorderThickness" Value="2"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="border" Property="BorderBrush" Value="#FFD700"/>
+                                <Setter TargetName="border" Property="Opacity" Value="0.8"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -113,13 +116,13 @@
             <!-- 色選択パネル（描画モード時のみ表示） -->
             <StackPanel x:Name="ColorPanel" Orientation="Horizontal" Visibility="Collapsed">
                 <!-- 区切り線 -->
-                <Border Width="2" Background="#4A4A6A" Margin="8,8" CornerRadius="1"/>
+                <Border Width="2" Background="#4A4A6A" Margin="4,8" CornerRadius="1"/>
                 
                 <!-- 色選択ボタン -->
                 <Button x:Name="BtnRed" Background="#FF6B6B" Style="{StaticResource ColorButton}" ToolTip="赤 (1)" Click="BtnRed_Click"/>
                 <Button x:Name="BtnBlue" Background="#74B9FF" Style="{StaticResource ColorButton}" ToolTip="青 (2)" Click="BtnBlue_Click"/>
                 <Button x:Name="BtnYellow" Background="#FDCB6E" Style="{StaticResource ColorButton}" ToolTip="黄 (3)" Click="BtnYellow_Click"/>
-                <Button x:Name="BtnGreen" Background="#55EFC4" Style="{StaticResource ColorButton}" ToolTip="緑 (4)" Click="BtnGreen_Click"/>
+                <Button x:Name="BtnGreen" Background="#27AE60" Style="{StaticResource ColorButton}" ToolTip="緑 (4)" Click="BtnGreen_Click"/>
             </StackPanel>
         </StackPanel>
     </Border>

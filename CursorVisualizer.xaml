@@ -6,7 +6,7 @@
         <!-- 強調リング -->
         <Ellipse x:Name="HighlightRing"
                  Width="60" Height="60"
-                 Stroke="Yellow" StrokeThickness="3"
+                 Stroke="#F39C12" StrokeThickness="3"
                  Visibility="Collapsed">
             <Ellipse.Effect>
                 <BlurEffect Radius="5"/>

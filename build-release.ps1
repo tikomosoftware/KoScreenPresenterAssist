@@ -27,6 +27,8 @@ $TempFrameworkDir = "$DistDir\temp_framework"
 $TempStandaloneDir = "$DistDir\temp_standalone"
 $FrameworkZip = "$DistDir\$AppName-v$Version-framework-dependent-release.zip"
 $StandaloneZip = "$DistDir\$AppName-v$Version-standalone-release.zip"
+$VectorZip = "$DistDir\$AppName-v$Version-vector.zip"
+$TempVectorDir = "$DistDir\temp_vector"
 $BuildStartTime = Get-Date
 
 # Cleanup
@@ -73,6 +75,27 @@ catch {
     Write-Host "   Failed: $($_.Exception.Message)" -ForegroundColor Red
 }
 
+# Vector Package
+Write-Host ""
+Write-Host "4. Vector Package..." -ForegroundColor Yellow
+$vectorSuccess = $false
+try {
+    if ($saSuccess) {
+        New-Item -ItemType Directory -Path $TempVectorDir -Force | Out-Null
+        Copy-Item -Path "$TempStandaloneDir\*" -Destination $TempVectorDir -Recurse -Force
+        
+        if (Test-Path "$TempVectorDir\README.md") { Remove-Item "$TempVectorDir\README.md" -Force }
+        if (Test-Path "README_VECTOR.md") { Copy-Item "README_VECTOR.md" "$TempVectorDir\README.md" }
+        
+        Compress-Archive -Path "$TempVectorDir\*" -DestinationPath $VectorZip -Force
+        Write-Host "   Done" -ForegroundColor Green
+        $vectorSuccess = $true
+    }
+}
+catch {
+    Write-Host "   Failed: $($_.Exception.Message)" -ForegroundColor Red
+}
+
 if (-not $fwSuccess -and -not $saSuccess) {
     Write-Error "Both builds failed"
     exit 1
@@ -80,9 +103,10 @@ if (-not $fwSuccess -and -not $saSuccess) {
 
 # Cleanup temp
 Write-Host ""
-Write-Host "4. Cleanup temp files..." -ForegroundColor Yellow
+Write-Host "5. Cleanup temp files..." -ForegroundColor Yellow
 if (Test-Path $TempFrameworkDir) { Remove-Item $TempFrameworkDir -Recurse -Force }
 if (Test-Path $TempStandaloneDir) { Remove-Item $TempStandaloneDir -Recurse -Force }
+if (Test-Path $TempVectorDir) { Remove-Item $TempVectorDir -Recurse -Force }
 Write-Host "   Done" -ForegroundColor Green
 Write-Host ""
 
@@ -110,6 +134,15 @@ if ($saSuccess -and (Test-Path $StandaloneZip)) {
     Write-Host "  Size: $([math]::Round($info.Length / 1MB, 2)) MB" -ForegroundColor White
     Write-Host "  SHA256: $($hash.Hash)" -ForegroundColor Gray
     Write-Host "  No runtime required" -ForegroundColor Green
+    Write-Host ""
+}
+
+if ($vectorSuccess -and (Test-Path $VectorZip)) {
+    $info = Get-Item $VectorZip
+    Write-Host "Vector Package:" -ForegroundColor Cyan
+    Write-Host "  File: $($info.Name)" -ForegroundColor White
+    Write-Host "  Size: $([math]::Round($info.Length / 1MB, 2)) MB" -ForegroundColor White
+    Write-Host "  Vector README included" -ForegroundColor Green
     Write-Host ""
 }
 

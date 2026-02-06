@@ -7,6 +7,13 @@ using System.Windows.Threading;
 
 namespace ScreenPresenterAssist
 {
+    public enum MagnifierDesign
+    {
+        Lens,           // 縁取り(白) + 影
+        BlackBorder,    // 縁取り(黒)
+        WhiteBorder     // 縁取り(白)
+    }
+
     /// <summary>
     /// Magnification APIを使用した拡大鏡実装
     /// </summary>
@@ -179,6 +186,28 @@ namespace ScreenPresenterAssist
                     ShowWindow(_hwndMag, SW_HIDE);
                 }
                 this.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        public void SetDesign(MagnifierDesign design)
+        {
+            switch (design)
+            {
+                case MagnifierDesign.Lens:
+                    MagnifierBorder.BorderBrush = System.Windows.Media.Brushes.White;
+                    MagnifierBorder.BorderThickness = new Thickness(2);
+                    MagnifierBorder.Effect = new System.Windows.Media.Effects.DropShadowEffect { BlurRadius = 15, Opacity = 0.5 };
+                    break;
+                case MagnifierDesign.BlackBorder:
+                    MagnifierBorder.BorderBrush = System.Windows.Media.Brushes.Black;
+                    MagnifierBorder.BorderThickness = new Thickness(2);
+                    MagnifierBorder.Effect = null;
+                    break;
+                case MagnifierDesign.WhiteBorder:
+                    MagnifierBorder.BorderBrush = System.Windows.Media.Brushes.White;
+                    MagnifierBorder.BorderThickness = new Thickness(2);
+                    MagnifierBorder.Effect = null;
+                    break;
             }
         }
 

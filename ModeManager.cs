@@ -37,6 +37,7 @@ namespace ScreenPresenterAssist
         {
             _window.SetCursorHighlight(CurrentMode == AppMode.Highlight);
             _window.SetMagnifierActive(CurrentMode == AppMode.Magnify);
+            _window.SetEscHotkeyEnabled(CurrentMode != AppMode.Normal);
 
             switch (CurrentMode)
             {

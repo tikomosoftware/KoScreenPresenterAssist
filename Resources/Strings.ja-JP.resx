@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TooltipDraw" xml:space="preserve"><value>描画モード (Ctrl+Alt+P)</value></data>
+  <data name="TooltipHighlight" xml:space="preserve"><value>強調表示 (Ctrl+Alt+H)</value></data>
+  <data name="TooltipMagnify" xml:space="preserve"><value>拡大鏡 (Ctrl+Alt+Z)</value></data>
+  <data name="TooltipClear" xml:space="preserve"><value>全消去 (Ctrl+Alt+X)</value></data>
+  <data name="TooltipOff" xml:space="preserve"><value>機能OFF (Esc)</value></data>
+  <data name="TooltipRed" xml:space="preserve"><value>赤 (1)</value></data>
+  <data name="TooltipBlue" xml:space="preserve"><value>青 (2)</value></data>
+  <data name="TooltipYellow" xml:space="preserve"><value>黄 (3)</value></data>
+  <data name="TooltipGreen" xml:space="preserve"><value>緑 (4)</value></data>
+  <data name="MenuShowToolbar" xml:space="preserve"><value>ツールバー表示</value></data>
+  <data name="MenuHideToolbar" xml:space="preserve"><value>ツールバー非表示</value></data>
+  <data name="MenuHelp" xml:space="preserve"><value>ヘルプ</value></data>
+  <data name="MenuSettings" xml:space="preserve"><value>設定</value></data>
+  <data name="MenuMagnifierDesign" xml:space="preserve"><value>拡大鏡のデザイン</value></data>
+  <data name="DesignLens" xml:space="preserve"><value>レンズ</value></data>
+  <data name="DesignBlackBorder" xml:space="preserve"><value>縁取り (黒)</value></data>
+  <data name="DesignWhiteBorder" xml:space="preserve"><value>縁取り (白)</value></data>
+  <data name="MenuExit" xml:space="preserve"><value>終了</value></data>
+  <data name="HelpTitle" xml:space="preserve"><value>ヘルプ</value></data>
+  <data name="HelpContent" xml:space="preserve"><value>【Screen Presenter Assist 使い方】
+
+■ ショートカットキー
+  Ctrl + Alt + P : 描画モード切替
+  Ctrl + Alt + H : 強調表示モード切替
+  Ctrl + Alt + Z : 拡大鏡モード切替
+  Ctrl + Alt + X : 描画を全消去
+  Esc : 全モード解除（描画/強調/拡大）
+
+■ 描画モード中
+  1～4キー : 色変更（1:赤 2:青 3:黄 4:緑）
+  Ctrl + ドラッグ : 円を描く
+  Shift + ドラッグ : 直線を描く
+  通常ドラッグ : フリーハンド描画
+
+■ ツールバー
+  ✏️ : 描画モード
+  🔦 : 強調表示モード
+  🔍 : 拡大鏡モード
+  🗑️ : 全消去
+  ⏹️ : 機能OFF</value></data>
+</root>

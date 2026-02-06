@@ -21,7 +21,6 @@ namespace ScreenPresenterAssist
 
         private IntPtr _hWnd;
         private HwndSource? _source;
-        private int _currentId = 0;
         private Dictionary<int, Action> _hotkeys = new Dictionary<int, Action>();
 
         public void Initialize(Window window)
@@ -34,11 +33,27 @@ namespace ScreenPresenterAssist
 
         public void Register(uint modifiers, uint key, Action action)
         {
-            int id = _currentId++;
+            int id = GetId(modifiers, key);
             if (RegisterHotKey(_hWnd, id, modifiers, key))
             {
                 _hotkeys[id] = action;
             }
+        }
+
+        public void Unregister(uint modifiers, uint key)
+        {
+            int id = GetId(modifiers, key);
+            if (_hotkeys.ContainsKey(id))
+            {
+                UnregisterHotKey(_hWnd, id);
+                _hotkeys.Remove(id);
+            }
+        }
+
+        private int GetId(uint modifiers, uint key)
+        {
+            // モディファイアとキーを組み合わせたユニークなIDを生成
+            return (int)(modifiers << 16 | key);
         }
 
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

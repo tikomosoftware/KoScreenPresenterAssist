@@ -10,11 +10,11 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Your Name")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("tikomo software")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyCopyrightAttribute("© 2026 KoScreenPresenterAssist")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("© 2026 tikomo software")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9faa71faa91386fd2d869951bf8b41b224105b8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d619b969da771cc3bf7905753ac21c172829e2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("KoScreenPresenterAssist")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KoScreenPresenterAssist")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0")]

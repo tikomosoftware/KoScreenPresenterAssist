@@ -28,6 +28,11 @@ namespace ScreenPresenterAssist
             HighlightRing.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public void SetHighlightColor(Color color)
+        {
+            HighlightRing.Stroke = new SolidColorBrush(color);
+        }
+
         private void UpdatePosition()
         {
             var pos = System.Windows.Forms.Control.MousePosition;
